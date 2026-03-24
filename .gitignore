@@ -1,0 +1,60 @@
+# ==============================
+# GENERAL
+# ==============================
+node_modules/
+*.log
+.env
+.vscode/
+.DS_Store
+
+# ==============================
+# PYTHON (BACKEND - DJANGO)
+# ==============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django
+db.sqlite3
+
+# ==============================
+# REACT NATIVE / NODE
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Expo
+.expo/
+.expo-shared/
+
+# Build folders
+dist/
+build/
+
+# ==============================
+# ANDROID
+# ==============================
+android/.gradle/
+android/build/
+android/app/build/
+.cxx/
+# ==============================
+# IOS
+# ==============================
+ios/build/
+ios/Pods/
+
+# ==============================
+# RUBY / BUNDLE (React Native iOS)
+# ==============================
+.bundle/
+
+# ==============================
+# MISC
+# ==============================
+*.swp
+*.lock
+*.keystore
