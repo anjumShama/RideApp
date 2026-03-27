@@ -54,7 +54,7 @@ export default function OTP({ navigation }) {
         onPress={() => {
           const enteredCode = code.join('');
           if (enteredCode === '1234') {
-            navigation.navigate('NewPassword');
+            navigation.navigate('ChangePassword');
           } else {
             alert('Invalid OTP. Use 1234 as dummy OTP for this demo.');
           }

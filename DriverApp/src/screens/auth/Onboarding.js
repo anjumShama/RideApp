@@ -1,82 +1,128 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
-export default function Onboarding({navigation}) {
+export default function Welcome({ navigation }) {
+  return (
+    <View style={styles.container}>
 
-return(
+      {/* TOP IMAGE */}
+      <View style={styles.imageWrapper}>
+        <Image
+          source={require('../../assets/driver.jpg')}
+          style={styles.image}
+        />
+      </View>
 
-<View style={styles.container}>
+      {/* TEXT */}
+      <Text style={styles.title}>
+        <Text style={styles.orange}>Earn Money</Text> With This
+      </Text>
 
-<Text style={styles.title}>
-Earn Money With This Driver App
-</Text>
+      <Text style={styles.subtitle}>Driver App</Text>
 
-<Text style={styles.subtitle}>
-Start earning by accepting ride requests from nearby customers.
-</Text>
+      <Text style={styles.desc}>
+        Lorem ipsum dolor sit, amet consectetur adipiscing elit. Pariatur veniam
+        cum nesciunt ad amet exercitationem nulla animi molestias dignissimos.
+      </Text>
 
-<TouchableOpacity
-style={styles.button}
-onPress={()=>navigation.navigate("Register")}
->
+      {/* BUTTON */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Register')}
+      >
+        <Text style={styles.buttonText}>Create Account</Text>
+      </TouchableOpacity>
 
-<Text style={styles.buttonText}>Create Account</Text>
+      {/* SIGN IN */}
+      <Text style={styles.footer}>
+        Already have an account?{' '}
+        <Text
+          style={styles.link}
+          onPress={() => navigation.navigate('Login')}
+        >
+          Sign in
+        </Text>
+      </Text>
 
-</TouchableOpacity>
-
-<TouchableOpacity
-onPress={()=>navigation.navigate("Login")}
->
-
-<Text style={styles.loginText}>
-Already have account? Sign in
-</Text>
-
-</TouchableOpacity>
-
-</View>
-
-)
-
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
 
-container:{
-flex:1,
-justifyContent:'center',
-alignItems:'center',
-padding:20
-},
+  imageWrapper: {
+    width: '100%',
+    height: 420,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    overflow: 'hidden',
+    marginTop: 10,
+    elevation: 8,
+  },
 
-title:{
-fontSize:28,
-fontWeight:'bold',
-textAlign:'center'
-},
+  image: {
+    width: '100%',
+    height: '100%',
+  },
 
-subtitle:{
-marginTop:15,
-textAlign:'center',
-color:'gray'
-},
+  title: {
+    fontSize: 22,
+    fontWeight: '600',
+    marginTop: 25,
+  },
 
-button:{
-backgroundColor:'#ff8c00',
-padding:15,
-borderRadius:25,
-marginTop:30,
-width:'80%'
-},
+  orange: {
+    color: '#ff8c00',
+    fontWeight: 'bold',
+  },
 
-buttonText:{
-color:'#fff',
-textAlign:'center',
-fontWeight:'bold'
-},
+  subtitle: {
+    fontSize: 22,
+    fontWeight: '600',
+    marginBottom: 10,
+  },
 
-loginText:{
-marginTop:20
-}
+  desc: {
+    textAlign: 'center',
+    color: '#666',
+    fontSize: 13,
+    marginBottom: 25,
+  },
 
+  button: {
+    width: '90%',
+    backgroundColor: '#ff8c00',
+    paddingVertical: 15,
+    borderRadius: 30,
+    alignItems: 'center',
+    elevation: 5,
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+  footer: {
+    marginTop: 15,
+    fontSize: 14,
+  },
+
+  link: {
+    color: '#ff8c00',
+    fontWeight: '600',
+  },
 });

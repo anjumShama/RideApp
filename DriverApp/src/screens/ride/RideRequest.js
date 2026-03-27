@@ -1,84 +1,101 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-import { acceptRide } from '../../services/rideService';
-
-export default function RideRequest({ navigation, route }) {
-
-  const { ride } = route.params;
-
-  const handleAccept = async () => {
-    try {
-      await acceptRide(ride.id);
-      navigation.navigate('RideNavigation', { ride });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+export default function RideRequestScreen({ navigation }) {
   return (
     <View style={styles.container}>
-
-      <Text style={styles.title}>Ride Request</Text>
+      
+      <Image
+        source={{
+          uri: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+        }}
+        style={styles.mapImage}
+      />
 
       <View style={styles.card}>
-        <Text>Pickup: {ride.pickup}</Text>
-        <Text>Destination: {ride.destination}</Text>
+        <Text style={styles.title}>Ride Request</Text>
+
+        <View style={styles.userRow}>
+          <Image
+            source={{ uri: 'https://i.pravatar.cc/100' }}
+            style={styles.avatar}
+          />
+          <View>
+            <Text style={styles.name}>Esther Howard</Text>
+            <Text style={styles.sub}>Cash payment</Text>
+          </View>
+        </View>
+
+        <Text style={styles.location}>📍 Kalkere, Bengaluru</Text>
+        <Text style={styles.location}>📍 BTM layout, Bengaluru</Text>
+
+        <View style={styles.btnRow}>
+          <TouchableOpacity style={styles.decline}>
+            <Text style={{ color: '#FF8C00' }}>Decline</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.accept}
+            onPress={() => navigation.navigate('Policy')}
+          >
+            <Text style={{ color: '#fff' }}>Accept</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <View style={styles.row}>
-
-        <TouchableOpacity style={styles.decline}>
-          <Text style={styles.text}>Decline</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.accept}
-          onPress={handleAccept}
-        >
-          <Text style={styles.text}>Accept</Text>
-        </TouchableOpacity>
-
-      </View>
-
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold' },
+  container: { flex: 1, backgroundColor: '#F5F5F5', alignItems: 'center' },
+
+  mapImage: {
+    width: '90%',
+    height: 250,
+    borderRadius: 20,
+    marginTop: 40,
+  },
 
   card: {
-    padding: 20,
+    width: '90%',
     backgroundColor: '#fff',
-    borderRadius: 15,
-    marginVertical: 20,
+    borderRadius: 20,
+    padding: 20,
+    marginTop: -40,
     elevation: 5,
   },
 
-  row: { flexDirection: 'row' },
+  title: { fontSize: 18, fontWeight: '600', marginBottom: 10 },
+
+  userRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
+
+  avatar: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
+
+  name: { fontWeight: '600' },
+  sub: { color: 'gray', fontSize: 12 },
+
+  location: { marginVertical: 5 },
+
+  btnRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
 
   decline: {
-    flex: 1,
-    backgroundColor: 'red',
-    padding: 15,
-    borderRadius: 10,
-    marginRight: 5,
+    padding: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#FF8C00',
+    width: '45%',
+    alignItems: 'center',
   },
 
   accept: {
-    flex: 1,
-    backgroundColor: 'green',
-    padding: 15,
-    borderRadius: 10,
-    marginLeft: 5,
+    backgroundColor: '#FF8C00',
+    padding: 10,
+    borderRadius: 20,
+    width: '45%',
+    alignItems: 'center',
   },
-
-  text: { color: '#fff', textAlign: 'center' },
 });

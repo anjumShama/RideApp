@@ -14,33 +14,37 @@ export default function NewPassword({ navigation }) {
   return (
     <View style={styles.container}>
 
-      {/* TITLE */}
-      <Text style={styles.title}>New Password</Text>
+      {/* TOP */}
+      <View style={styles.top}>
+        <Text style={styles.title}>New Password</Text>
+        <Text style={styles.subtitle}>
+          Your new password must be different from previously used passwords
+        </Text>
+      </View>
 
-      {/* PASSWORD */}
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        placeholder="Enter password"
-        secureTextEntry
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-      />
+      {/* FORM */}
+      <View style={styles.form}>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
+        />
 
-      {/* CONFIRM PASSWORD */}
-      <Text style={styles.label}>Confirm Password</Text>
-      <TextInput
-        placeholder="Confirm password"
-        secureTextEntry
-        style={styles.input}
-        value={confirm}
-        onChangeText={setConfirm}
-      />
+        <Text style={styles.label}>Confirm Password</Text>
+        <TextInput
+          secureTextEntry
+          style={styles.input}
+          value={confirm}
+          onChangeText={setConfirm}
+        />
+      </View>
 
       {/* BUTTON */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Welcome')}
+        onPress={() => navigation.navigate('Login')}
       >
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
@@ -52,40 +56,56 @@ export default function NewPassword({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#fff',
+    paddingHorizontal: 25,
+    paddingTop: 60,
+  },
+
+  top: {
+    alignItems: 'center',
+    marginBottom: 40,
   },
 
   title: {
-    fontSize: 26,
+    fontSize: 32,
     fontWeight: 'bold',
-    marginTop: 40,
-    marginBottom: 30,
+  },
+
+  subtitle: {
+    color: '#bbb',
+    textAlign: 'center',
+    marginTop: 5,
+  },
+
+  form: {
+    flex: 1,
   },
 
   label: {
     fontWeight: '600',
     marginBottom: 5,
+    marginTop: 10,
   },
 
   input: {
     backgroundColor: '#fff',
     padding: 15,
-    borderRadius: 15,
-    marginBottom: 20,
-    elevation: 5,
+    borderRadius: 20,
+    marginBottom: 15,
+    elevation: 6,
   },
 
   button: {
     backgroundColor: '#ff8c00',
-    padding: 15,
+    padding: 16,
     borderRadius: 30,
     alignItems: 'center',
-    marginTop: 20,
+    marginBottom: 30,
   },
 
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontSize: 16,
   },
 });

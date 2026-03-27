@@ -14,43 +14,45 @@ export default function Register({ navigation }) {
   return (
     <View style={styles.container}>
 
-      {/* TITLE */}
-      <Text style={styles.title}>Create Account</Text>
-      <Text style={styles.subtitle}>
-        HI! Welcome back, you’ve been missed
-      </Text>
+      {/* TOP */}
+      <View style={styles.top}>
+        <Text style={styles.title}>Create Account</Text>
+        <Text style={styles.subtitle}>
+          HI! Welcome back, you’ve been missed
+        </Text>
+      </View>
 
-      {/* EMAIL */}
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        placeholder="example@gmail.com"
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-      />
+      {/* FORM */}
+      <View style={styles.form}>
+        <Text style={styles.label}>Email</Text>
+        <TextInput
+          placeholder="example@gmail.com"
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+        />
 
-      {/* PASSWORD */}
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        placeholder="xyz123"
-        secureTextEntry
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-      />
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          placeholder="xyz123"
+          secureTextEntry
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
+        />
 
-      {/* FORGOT */}
-      <Text
-        style={styles.forgot}
-        onPress={() => navigation.navigate('NewPassword')}
-      >
-        Forgot Password?
-      </Text>
+        <Text
+          style={styles.forgot}
+          onPress={() => navigation.navigate('NewPassword')}
+        >
+          Forgot Password?
+        </Text>
+      </View>
 
       {/* BUTTON */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('OTPVerify')}
+        onPress={() => navigation.navigate('Login')}
       >
         <Text style={styles.buttonText}>Sign in</Text>
       </TouchableOpacity>
@@ -62,51 +64,60 @@ export default function Register({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#fff',
+    paddingHorizontal: 25,
+    paddingTop: 60,
+  },
+
+  top: {
+    alignItems: 'center',
+    marginBottom: 40,
   },
 
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
-    marginTop: 20,
   },
 
   subtitle: {
     color: '#aaa',
-    marginBottom: 30,
+    marginTop: 5,
+  },
+
+  form: {
+    flex: 1,
   },
 
   label: {
     fontWeight: '600',
     marginBottom: 5,
+    marginTop: 10,
   },
 
   input: {
     backgroundColor: '#fff',
     padding: 15,
-    borderRadius: 15,
+    borderRadius: 20,
     marginBottom: 15,
-
-    // SHADOW (FIGMA STYLE)
-    elevation: 5,
+    elevation: 6,
   },
 
   forgot: {
     color: '#ff8c00',
     textAlign: 'right',
-    marginBottom: 30,
   },
 
   button: {
     backgroundColor: '#ff8c00',
-    padding: 15,
+    padding: 16,
     borderRadius: 30,
     alignItems: 'center',
+    marginBottom: 30,
   },
 
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontSize: 16,
   },
 });
