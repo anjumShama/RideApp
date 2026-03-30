@@ -84,7 +84,7 @@ export default function DrivingDetails({ navigation }) {
         {/* BUTTON */}
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('BankDetails')}
+          onPress={() => navigation.navigate('GovernmentID')}
         >
           <Text style={styles.buttonText}>Done</Text>
         </TouchableOpacity>

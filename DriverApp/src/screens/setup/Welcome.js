@@ -12,7 +12,7 @@ export default function Welcome({ navigation }) {
     <View style={styles.container}>
 
       {/* HEADER */}
-      <Text style={styles.title}>Welcome Esther</Text>
+      <Text style={styles.title}>Welcome!, Esther</Text>
 
       {/* REQUIRED */}
       <Text style={styles.section}>Required Steps</Text>

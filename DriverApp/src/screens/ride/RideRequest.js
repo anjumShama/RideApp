@@ -1,101 +1,244 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 
 export default function RideRequestScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      
-      <Image
-        source={{
-          uri: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-        }}
-        style={styles.mapImage}
-      />
 
-      <View style={styles.card}>
-        <Text style={styles.title}>Ride Request</Text>
+      <StatusBar backgroundColor="#cfcfcf" barStyle="dark-content" />
 
-        <View style={styles.userRow}>
-          <Image
-            source={{ uri: 'https://i.pravatar.cc/100' }}
-            style={styles.avatar}
-          />
-          <View>
-            <Text style={styles.name}>Esther Howard</Text>
-            <Text style={styles.sub}>Cash payment</Text>
+      {/* FULL SHEET */}
+      <View style={styles.sheet}>
+
+        {/* HANDLE */}
+        <View style={styles.handle} />
+
+        {/* MAP IMAGE */}
+        <Image
+          source={require('../../assets/map.png')} 
+          style={styles.mapImage}
+          resizeMode="cover"
+        />
+
+        {/* CARD CONTENT */}
+        <View style={styles.card}>
+
+          {/* HEADER */}
+          <View style={styles.headerRow}>
+            <Text style={styles.title}>Ride Request</Text>
+            <Text style={styles.time}>5 mins Away</Text>
           </View>
+
+          {/* USER */}
+          <View style={styles.userRow}>
+            <Image
+              source={{ uri: 'https://i.pravatar.cc/150?img=8' }}
+              style={styles.avatar}
+            />
+            <View>
+              <Text style={styles.name}>Esther Howard</Text>
+              <Text style={styles.sub}>Cash payment</Text>
+            </View>
+          </View>
+
+          {/* LOCATIONS */}
+          <View style={styles.locationRow}>
+            <Text style={styles.locIcon}>📍</Text>
+            <View>
+              <Text style={styles.locationText}>Kalkere, Bengaluru</Text>
+              <Text style={styles.subSmall}>10 mins trip</Text>
+            </View>
+          </View>
+
+          <View style={styles.locationRow}>
+            <Text style={styles.locIcon}>📍</Text>
+            <Text style={styles.locationText}>
+              BTM layout, Bengaluru
+            </Text>
+          </View>
+
+          {/* BUTTONS */}
+          <View style={styles.btnRow}>
+
+            <TouchableOpacity style={styles.decline}>
+              <Text style={styles.declineText}>Decline</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.accept}
+              onPress={() => navigation.navigate('Policy')}
+            >
+              <Text style={styles.acceptText}>Accept</Text>
+            </TouchableOpacity>
+
+          </View>
+
         </View>
 
-        <Text style={styles.location}>📍 Kalkere, Bengaluru</Text>
-        <Text style={styles.location}>📍 BTM layout, Bengaluru</Text>
+        {/* BOTTOM INDICATOR */}
+        <View style={styles.bottomIndicator} />
 
-        <View style={styles.btnRow}>
-          <TouchableOpacity style={styles.decline}>
-            <Text style={{ color: '#FF8C00' }}>Decline</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.accept}
-            onPress={() => navigation.navigate('Policy')}
-          >
-            <Text style={{ color: '#fff' }}>Accept</Text>
-          </TouchableOpacity>
-        </View>
       </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F5F5F5', alignItems: 'center' },
+
+  container: {
+    flex: 1,
+    backgroundColor: '#cfcfcf',
+  },
+
+  sheet: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+
+    backgroundColor: '#eeeeee',
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+
+    paddingTop: 15,
+  },
+
+  handle: {
+    alignSelf: 'center',
+    width: 70,
+    height: 7,
+    backgroundColor: '#000',
+    borderRadius: 10,
+    marginBottom: 10,
+  },
 
   mapImage: {
     width: '90%',
-    height: 250,
-    borderRadius: 20,
-    marginTop: 40,
+    height: 260,
+    borderRadius: 25,
+    alignSelf: 'center',
+    marginTop: 10,
   },
 
   card: {
-    width: '90%',
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    padding: 20,
-    marginTop: -40,
-    elevation: 5,
+    flex: 1,
+    backgroundColor: '#eeeeee',
+    marginTop: 20,
+    paddingHorizontal: 25,
   },
 
-  title: { fontSize: 18, fontWeight: '600', marginBottom: 10 },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 
-  userRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
+  title: {
+    fontSize: 18,
+    fontWeight: '600',
+  },
 
-  avatar: { width: 40, height: 40, borderRadius: 20, marginRight: 10 },
+  time: {
+    fontSize: 12,
+    color: '#bdbdbd',
+  },
 
-  name: { fontWeight: '600' },
-  sub: { color: 'gray', fontSize: 12 },
+  userRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 15,
+  },
 
-  location: { marginVertical: 5 },
+  avatar: {
+    width: 45,
+    height: 45,
+    borderRadius: 22,
+    marginRight: 10,
+  },
+
+  name: {
+    fontWeight: '600',
+  },
+
+  sub: {
+    color: '#888',
+    fontSize: 12,
+  },
+
+  locationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 18,
+  },
+
+  locIcon: {
+    fontSize: 18,
+    marginRight: 10,
+  },
+
+  locationText: {
+    fontSize: 14,
+    color: '#333',
+  },
+
+  subSmall: {
+    fontSize: 12,
+    color: '#888',
+  },
 
   btnRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: 30,
   },
 
   decline: {
-    padding: 10,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#FF8C00',
+    backgroundColor: '#dcdcdc',
+    paddingVertical: 12,
+    borderRadius: 25,
     width: '45%',
     alignItems: 'center',
+
+    elevation: 3,
+  },
+
+  declineText: {
+    color: '#ff8c00',
+    fontWeight: '600',
   },
 
   accept: {
-    backgroundColor: '#FF8C00',
-    padding: 10,
-    borderRadius: 20,
+    backgroundColor: '#ff8c00',
+    paddingVertical: 12,
+    borderRadius: 25,
     width: '45%',
     alignItems: 'center',
+
+    elevation: 5,
   },
+
+  acceptText: {
+    color: '#fff',
+    fontWeight: '600',
+  },
+
+  bottomIndicator: {
+    position: 'absolute',
+    bottom: 8,
+    alignSelf: 'center',
+    width: 120,
+    height: 5,
+    backgroundColor: '#000',
+    borderRadius: 10,
+  },
+
 });
