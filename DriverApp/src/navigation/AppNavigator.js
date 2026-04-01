@@ -16,6 +16,8 @@ import ProfileSetup from '../screens/setup/ProfileSetup';
 import DrivingDetails from '../screens/setup/DrivingDetails';
 import BankDetails from '../screens/setup/BankDetails';
 import GovernmentID from '../screens/setup/GovernmentID';
+import YourProfile from '../screens/setup/YourProfile';
+import Notification from '../screens/setup/Notification';
 
 // HOME
 import Home from '../screens/home/Home';
@@ -72,6 +74,8 @@ export default function AppNavigator() {
         <Stack.Screen name="DrivingDetails" component={DrivingDetails} />
         <Stack.Screen name="BankDetails" component={BankDetails} />
         <Stack.Screen name="GovernmentID" component={GovernmentID} />
+        <Stack.Screen name="YourProfile" component={YourProfile} />
+        <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="LocationPermission" component={LocationPermission} />
 
         {/* HOME */}

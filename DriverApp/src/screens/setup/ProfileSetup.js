@@ -34,14 +34,14 @@ export default function ProfileScreen({ navigation }) {
 
       {/* MENU */}
       <View style={styles.menuContainer}>
-        {menuItem('account-circle-outline', 'Your profile')}
-        {menuItem('bell-outline', 'Notification')}
-        {menuItem('clock-outline', 'Your Rides')}
-        {menuItem('calendar-outline', 'Pre-Booked Rides')}
-        {menuItem('cog-outline', 'Settings')}
-        {menuItem('help-circle-outline', 'Help Center')}
-        {menuItem('shield-lock-outline', 'Privacy Policy')}
-        {menuItem('logout', 'Log out')}
+        {menuItem('account-circle-outline', 'Your profile', () => navigation.navigate('YourProfile'))}
+        {menuItem('bell-outline', 'Notification', () => navigation.navigate('Notification'))}
+        {menuItem('clock-outline', 'Your Rides', () => navigation.navigate('RideHistory'))}
+        {menuItem('calendar-outline', 'Pre-Booked Rides', () => navigation.navigate('Home'))}
+        {menuItem('cog-outline', 'Settings', () => navigation.navigate('Welcome'))}
+        {menuItem('help-circle-outline', 'Help Center', () => navigation.navigate('ContactUs'))}
+        {menuItem('shield-lock-outline', 'Privacy Policy', () => navigation.navigate('Policy'))}
+        {menuItem('logout', 'Log out', () => navigation.navigate('Onboarding'))}
       </View>
 
     </View>
@@ -49,8 +49,8 @@ export default function ProfileScreen({ navigation }) {
 }
 
 /* MENU ITEM */
-const menuItem = (icon, title) => (
-  <TouchableOpacity style={styles.menuItem} key={title}>
+const menuItem = (icon, title, onPress) => (
+  <TouchableOpacity style={styles.menuItem} key={title} onPress={onPress}>
     
     {/* ICON FIX */}
     <View style={styles.iconCircle}>

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(findstr:*)",
+      "Bash(gradlew.bat:*)",
+      "Bash(.gradlew.bat:*)",
+      "Bash(cmd /c:*)",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\--\\\\Desktop\\\\RideApp\\\\DriverApp\\\\android && gradlew.bat clean\")",
+      "Bash(powershell -Command:*)",
+      "Bash(node:*)",
+      "Bash(keytool:*)",
+      "Bash(adb logcat:*)",
+      "Bash(adb shell am start:*)",
+      "Bash(where:*)",
+      "Bash(\"C:/Users/--/AppData/Local/Android/Sdk/platform-tools/adb.exe\" logcat -c)",
+      "Bash(\"C:/Users/--/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell am force-stop com.driverapp)",
+      "Bash(\"C:/Users/--/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell am start -n com.driverapp/.MainActivity)",
+      "Bash(\"C:/Users/--/AppData/Local/Android/Sdk/platform-tools/adb.exe\" logcat -d)",
+      "Bash(\"C:/Users/--/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell \"ls /data/app/*/com.driverapp*/lib/x86_64/ 2>/dev/null || ls /data/app/*/*com.driverapp*/lib/x86_64/ 2>/dev/null\")",
+      "Bash(\"C:/Users/--/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell \"find /data/app/ -path ''*driverapp*'' -name ''*.so'' 2>/dev/null\")",
+      "Bash(\"C:/Users/--/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell \"pidof com.driverapp\")"
+    ]
+  }
+}
