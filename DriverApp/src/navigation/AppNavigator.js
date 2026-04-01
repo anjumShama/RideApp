@@ -1,6 +1,13 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, {useRef, useCallback} from 'react';
+import {View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import BottomNavBar from '../components/BottomNavBar';
+import RecentScreens from '../components/RecentScreens';
+import {
+  ScreenHistoryProvider,
+  useScreenHistory,
+} from '../context/ScreenHistoryContext';
 
 // AUTH
 import Onboarding from '../screens/auth/Onboarding';
@@ -34,8 +41,6 @@ import RideComplete from '../screens/ride/RideComplete';
 import VerifiedOtp from '../screens/ride/verifiedotp';
 import FAQ from '../screens/help/FAQ';
 
-
-
 import PolicyScreen from '../screens/ride/PolicyScreen';
 import AskOTPScreen from '../screens/ride/askotp';
 import CancelRide from '../screens/ride/cancelride';
@@ -49,63 +54,95 @@ import RideHistory from '../screens/history/RideHistory';
 
 const Stack = createNativeStackNavigator();
 
+function AppContent() {
+  const {addScreen, showRecents} = useScreenHistory();
+  const routeNameRef = useRef();
+
+  const onStateChange = useCallback(() => {
+    const currentRoute = navigationRef.current?.getCurrentRoute();
+    if (currentRoute && currentRoute.name !== routeNameRef.current) {
+      routeNameRef.current = currentRoute.name;
+      addScreen(currentRoute.name);
+    }
+  }, [addScreen]);
+
+  return (
+    <NavigationContainer ref={navigationRef} onStateChange={onStateChange}>
+      <View style={{flex: 1}}>
+        <View style={{flex: 1}}>
+          <Stack.Navigator
+            initialRouteName="Onboarding"
+            screenOptions={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}>
+            {/* AUTH FLOW */}
+            <Stack.Screen name="Onboarding" component={Onboarding} />
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="OTPVerify" component={OTPVerify} />
+            <Stack.Screen name="NewPassword" component={NewPassword} />
+            <Stack.Screen name="ChangePassword" component={ChangePassword} />
+
+            {/* SETUP FLOW */}
+            <Stack.Screen name="Welcome" component={Welcome} />
+            <Stack.Screen name="ProfileSetup" component={ProfileSetup} />
+            <Stack.Screen name="DrivingDetails" component={DrivingDetails} />
+            <Stack.Screen name="BankDetails" component={BankDetails} />
+            <Stack.Screen name="GovernmentID" component={GovernmentID} />
+            <Stack.Screen name="YourProfile" component={YourProfile} />
+            <Stack.Screen name="Notification" component={Notification} />
+            <Stack.Screen
+              name="LocationPermission"
+              component={LocationPermission}
+            />
+
+            {/* HOME */}
+            <Stack.Screen name="Home" component={Home} />
+
+            {/* PROFILE */}
+            <Stack.Screen name="Earning" component={Earning} />
+
+            {/* RIDE FLOW */}
+            <Stack.Screen name="RideRequest" component={RideRequest} />
+
+            {/* NEW POLICY SCREEN */}
+            <Stack.Screen name="Policy" component={PolicyScreen} />
+            <Stack.Screen
+              name="CustomerLocation"
+              component={CustomerLocationScreen}
+            />
+            <Stack.Screen name="AskOTP" component={AskOTPScreen} />
+            <Stack.Screen name="CancelRide" component={CancelRide} />
+            <Stack.Screen name="RideNavigation" component={RideNavigation} />
+            <Stack.Screen name="RideOTP" component={RideOTP} />
+            <Stack.Screen name="RideComplete" component={RideComplete} />
+            <Stack.Screen name="PaymentQR" component={PaymentQR} />
+            <Stack.Screen name="VerifiedOtp" component={VerifiedOtp} />
+            <Stack.Screen name="ContactUs" component={ContactUs} />
+            <Stack.Screen name="FAQ" component={FAQ} />
+
+            {/* RIDE HISTORY */}
+            <Stack.Screen name="RideHistory" component={RideHistory} />
+            <Stack.Screen name="Active" component={Active} />
+            <Stack.Screen name="Cancelled" component={Cancelled} />
+          </Stack.Navigator>
+
+          {/* RECENT SCREENS OVERLAY */}
+          {showRecents && <RecentScreens />}
+        </View>
+        <BottomNavBar />
+      </View>
+    </NavigationContainer>
+  );
+}
+
+export const navigationRef = React.createRef();
+
 export default function AppNavigator() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Onboarding"
-        screenOptions={{
-          headerShown: false,
-          animation: 'slide_from_right',
-        }}
-      >
-
-        {/* AUTH FLOW */}
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="OTPVerify" component={OTPVerify} />
-        <Stack.Screen name="NewPassword" component={NewPassword} />
-        <Stack.Screen name="ChangePassword" component={ChangePassword} />
-
-        {/* SETUP FLOW */}
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="ProfileSetup" component={ProfileSetup} />
-        <Stack.Screen name="DrivingDetails" component={DrivingDetails} />
-        <Stack.Screen name="BankDetails" component={BankDetails} />
-        <Stack.Screen name="GovernmentID" component={GovernmentID} />
-        <Stack.Screen name="YourProfile" component={YourProfile} />
-        <Stack.Screen name="Notification" component={Notification} />
-        <Stack.Screen name="LocationPermission" component={LocationPermission} />
-
-        {/* HOME */}
-        <Stack.Screen name="Home" component={Home} />
-
-        {/* PROFILE */}
-         <Stack.Screen name="Earning" component={Earning} /> 
-
-        {/* RIDE FLOW */}
-        <Stack.Screen name="RideRequest" component={RideRequest} />
-        
-        {/*  NEW POLICY SCREEN */}
-        <Stack.Screen name="Policy" component={PolicyScreen} />
-        <Stack.Screen name="CustomerLocation" component={CustomerLocationScreen} />
-        <Stack.Screen name="AskOTP" component={AskOTPScreen} />
-        <Stack.Screen name="CancelRide" component={CancelRide} />
-        <Stack.Screen name="RideNavigation" component={RideNavigation} />
-        <Stack.Screen name="RideOTP" component={RideOTP} />
-        <Stack.Screen name="RideComplete" component={RideComplete} />
-        <Stack.Screen name="PaymentQR" component={PaymentQR} />
-        <Stack.Screen name="VerifiedOtp" component={VerifiedOtp} />
-        <Stack.Screen name="ContactUs" component={ContactUs} />
-        <Stack.Screen name="FAQ" component={FAQ} />
-
-        {/* RIDE HISTORY */}
-        <Stack.Screen name="RideHistory" component={RideHistory} />
-        <Stack.Screen name="Active" component={Active} />
-        <Stack.Screen name="Cancelled" component={Cancelled} />
-      
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ScreenHistoryProvider>
+      <AppContent />
+    </ScreenHistoryProvider>
   );
 }
