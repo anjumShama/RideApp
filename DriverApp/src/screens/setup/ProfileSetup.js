@@ -34,13 +34,13 @@ export default function ProfileScreen({ navigation }) {
 
       {/* MENU */}
       <View style={styles.menuContainer}>
-        {menuItem('account-circle-outline', 'Your profile', () => navigation.navigate('YourProfile'))}
-        {menuItem('bell-outline', 'Notification', () => navigation.navigate('Notification'))}
-        {menuItem('clock-outline', 'Your Rides', () => navigation.navigate('RideHistory'))}
-        {menuItem('calendar-outline', 'Pre-Booked Rides', () => navigation.navigate('Home'))}
-        {menuItem('cog-outline', 'Settings', () => navigation.navigate('Welcome'))}
-        {menuItem('help-circle-outline', 'Help Center', () => navigation.navigate('ContactUs'))}
-        {menuItem('shield-lock-outline', 'Privacy Policy', () => navigation.navigate('Policy'))}
+        {menuItem('account', 'Your profile', () => navigation.navigate('YourProfile'))}
+        {menuItem('bell', 'Notification', () => navigation.navigate('Notification'))}
+        {menuItem('car', 'Your Rides', () => navigation.navigate('RideHistory'))}
+        {menuItem('calendar-clock', 'Pre-Booked Rides', () => navigation.navigate('Home'))}
+        {menuItem('cog', 'Settings', () => navigation.navigate('Welcome'))}
+        {menuItem('headset', 'Help Center', () => navigation.navigate('ContactUs'))}
+        {menuItem('shield-lock', 'Privacy Policy', () => navigation.navigate('Policy'))}
         {menuItem('logout', 'Log out', () => navigation.navigate('Onboarding'))}
       </View>
 
