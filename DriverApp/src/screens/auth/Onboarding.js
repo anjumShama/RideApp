@@ -5,11 +5,18 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  SafeAreaView,
+  StatusBar,
+  Platform,
 } from 'react-native';
 
 export default function Welcome({ navigation }) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
+      {/* ANDROID TOP SPACE FIX */}
+      <View style={styles.topSpacer} />
 
       {/* TOP IMAGE */}
       <View style={styles.imageWrapper}>
@@ -50,7 +57,7 @@ export default function Welcome({ navigation }) {
         </Text>
       </Text>
 
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -62,25 +69,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
+  /* 🔥 ANDROID STATUS BAR FIX */
+  topSpacer: {
+    height: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  },
+
   imageWrapper: {
     width: '100%',
-    height: 420,
+    height: 380, // slightly reduced for better fit
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
     overflow: 'hidden',
-    marginTop: 10,
     elevation: 8,
   },
 
   image: {
     width: '100%',
     height: '100%',
+    resizeMode: 'cover',
   },
 
   title: {
     fontSize: 22,
     fontWeight: '600',
     marginTop: 25,
+    textAlign: 'center',
   },
 
   orange: {
@@ -92,6 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     marginBottom: 10,
+    textAlign: 'center',
   },
 
   desc: {
@@ -99,6 +113,7 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 13,
     marginBottom: 25,
+    paddingHorizontal: 10,
   },
 
   button: {

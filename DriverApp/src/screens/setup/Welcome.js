@@ -11,62 +11,83 @@ export default function Welcome({ navigation }) {
   return (
     <View style={styles.container}>
 
-      {/* HEADER */}
-      <Text style={styles.title}>Welcome!, Esther</Text>
+      {/* CONTENT */}
+      <View style={styles.content}>
 
-      {/* REQUIRED */}
-      <Text style={styles.section}>Required Steps</Text>
+        {/* HEADER */}
+        <Text style={styles.title}>Welcome!, Esther</Text>
 
-      {/* CARDS */}
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => navigation.navigate('ProfileSetup')}
-      >
-        <Text style={styles.cardText}>Profile</Text>
-      </TouchableOpacity>
+        {/* REQUIRED */}
+        <Text style={styles.section}>Required Steps</Text>
 
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => navigation.navigate('BankDetails')}
-      >
-        <Text style={styles.cardText}>Bank Account Details</Text>
-      </TouchableOpacity>
+        {/* CARDS */}
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => navigation.navigate('ProfileSetup')}
+        >
+          <Text style={styles.cardText}>Profile</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => navigation.navigate('DrivingDetails')}
-      >
-        <Text style={styles.cardText}>Driving Details</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => navigation.navigate('BankDetails')}
+        >
+          <Text style={styles.cardText}>Bank Account Details</Text>
+        </TouchableOpacity>
 
-      {/* COMPLETED */}
-      <Text style={styles.section}>Submitted Steps</Text>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => navigation.navigate('DrivingDetails')}
+        >
+          <Text style={styles.cardText}>Driving Details</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.card}>
-        <Text style={styles.cardText}>Government ID</Text>
-      </TouchableOpacity>
+        {/* COMPLETED */}
+        <Text style={styles.section2}>Submitted Steps</Text>
+
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.cardText}>Government ID</Text>
+        </TouchableOpacity>
+
+      </View>
 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: '#fff',
   },
 
+  // ⭐ Adjusted positioning (not center, slightly up)
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: -60, // pulls content slightly UP
+  },
+
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 25, // increased spacing
   },
 
   section: {
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 10,
+    marginBottom: 15,
+    color: '#888',
+  },
+
+  section2: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 10,   // spacing between sections
+    marginBottom: 15,
     color: '#888',
   },
 
@@ -74,9 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 18,
     borderRadius: 15,
-    marginBottom: 15,
-
-    // shadow like figma
+    marginBottom: 18, // more spacing between cards
     elevation: 5,
   },
 
@@ -84,4 +103,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   },
+
 });

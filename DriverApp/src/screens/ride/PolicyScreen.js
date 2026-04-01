@@ -1,47 +1,172 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 
-export default function PolicyScreen() {
+export default function PolicyScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.card}>
-        <Text style={styles.title}>Cancellation Policy</Text>
 
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Text>
+      <StatusBar backgroundColor="#cfcfcf" barStyle="dark-content" />
 
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Text>
-      </ScrollView>
+      {/* FULL SHEET */}
+      <View style={styles.sheet}>
 
-      <TouchableOpacity style={styles.btn}>
-        <Text style={{ color: '#fff' }}>Accept</Text>
-      </TouchableOpacity>
+        {/* HANDLE */}
+        <View style={styles.handle} />
+
+        {/* SCROLL CARD */}
+        <View style={styles.cardWrapper}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 20 }}
+          >
+
+            <Text style={styles.heading}>Cancellation Policy</Text>
+
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pariatur veniam cum nesciunt ad amet exercitationem nulla
+              animi molestias dignissimos ea? Distinctio ex nemo veniam cum
+              nesciunt ad amet exercitationem nulla animi molestias dignissimos ea?
+            </Text>
+
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pariatur veniam cum nesciunt ad amet exercitationem nulla animi molestias.
+            </Text>
+
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pariatur veniam cum nesciunt ad amet exercitationem nulla animi molestias.
+            </Text>
+
+            <Text style={styles.heading}>Cancellation Policy</Text>
+
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pariatur veniam cum nesciunt ad amet exercitationem nulla
+              animi molestias dignissimos ea? Distinctio ex nemo veniam cum
+              nesciunt ad amet exercitationem nulla animi molestias dignissimos ea?
+            </Text>
+
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pariatur veniam cum nesciunt ad amet exercitationem nulla animi molestias.
+            </Text>
+
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pariatur veniam cum nesciunt ad amet exercitationem nulla animi molestias.
+            </Text>
+
+          </ScrollView>
+        </View>
+
+        {/* BUTTON */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('CustomerLocation')}
+        >
+          <Text style={styles.buttonText}>Accept</Text>
+        </TouchableOpacity>
+
+        {/* BOTTOM INDICATOR */}
+        <View style={styles.bottomIndicator} />
+
+      </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F5F5F5', padding: 20 },
 
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    padding: 20,
-    elevation: 5,
+  container: {
+    flex: 1,
+    backgroundColor: '#cfcfcf',
   },
 
-  title: { fontSize: 18, fontWeight: '600', marginBottom: 10 },
-  text: { marginBottom: 10, color: '#555' },
+  sheet: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
 
-  btn: {
-    backgroundColor: '#FF8C00',
-    padding: 15,
+    backgroundColor: '#eeeeee',
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+
+    paddingTop: 15,
+    paddingHorizontal: 20,
+  },
+
+  handle: {
+    alignSelf: 'center',
+    width: 70,
+    height: 7,
+    backgroundColor: '#000',
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+
+  cardWrapper: {
+    flex: 1,
+    backgroundColor: '#ffffff',
     borderRadius: 25,
-    alignItems: 'center',
-    marginTop: 20,
+    padding: 18,
+
+    elevation: 6,
   },
+
+  heading: {
+    color: '#ff8c00',
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 10,
+  },
+
+  text: {
+    fontSize: 13,
+    color: '#444',
+    lineHeight: 18,
+    marginBottom: 12,
+  },
+
+  button: {
+    position: 'absolute',
+    bottom: 60,
+    left: 30,
+    right: 30,
+
+    backgroundColor: '#ff8c00',
+    paddingVertical: 15,
+    borderRadius: 30,
+    alignItems: 'center',
+
+    elevation: 6,
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: '600',
+  },
+
+  bottomIndicator: {
+    position: 'absolute',
+    bottom: 8,
+    alignSelf: 'center',
+    width: 120,
+    height: 5,
+    backgroundColor: '#000',
+    borderRadius: 10,
+  },
+
 });

@@ -2,33 +2,51 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
+  Image,
+  TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 
 export default function PaymentQR({ navigation }) {
-
   return (
     <View style={styles.container}>
 
-      {/* TITLE */}
-      <Text style={styles.title}>Payment</Text>
+      <StatusBar backgroundColor="#cfcfcf" barStyle="dark-content" />
 
-      {/* QR BOX */}
-      <View style={styles.qrBox}>
-        <Text style={styles.qrText}>QR CODE</Text>
+      {/* FULL SHEET */}
+      <View style={styles.sheet}>
+
+        {/* HANDLE */}
+        <View style={styles.handle} />
+
+        {/* QR IMAGE */}
+        <Image
+          source={require('../../assets/qr.png')}
+          style={styles.qr}
+          resizeMode="contain"
+        />
+
+        {/* NAME */}
+        <Text style={styles.name}>Esther Howard</Text>
+
+        {/* AMOUNT CARD */}
+        <View style={styles.amountCard}>
+          <Text style={styles.amount}>$179</Text>
+        </View>
+
+        {/* 🔥 BUTTON (UPDATED NAVIGATION) */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('RideComplete')}  
+        >
+          <Text style={styles.buttonText}>Done</Text>
+        </TouchableOpacity>
+
+        {/* BOTTOM INDICATOR */}
+        <View style={styles.bottomIndicator} />
+
       </View>
-
-      {/* AMOUNT */}
-      <Text style={styles.amount}>$179</Text>
-
-      {/* BUTTON */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Home')}
-      >
-        <Text style={styles.buttonText}>Done</Text>
-      </TouchableOpacity>
 
     </View>
   );
@@ -38,47 +56,79 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#cfcfcf',
   },
 
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  sheet: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+
+    backgroundColor: '#eeeeee',
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+
+    alignItems: 'center',
+    paddingTop: 20,
+  },
+
+  handle: {
+    width: 70,
+    height: 7,
+    backgroundColor: '#000',
+    borderRadius: 10,
     marginBottom: 20,
   },
 
-  qrBox: {
+  qr: {
     width: 220,
     height: 220,
-    backgroundColor: '#ddd',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 15,
+    marginBottom: 15,
+  },
+
+  name: {
+    fontSize: 16,
+    fontWeight: '600',
     marginBottom: 20,
   },
 
-  qrText: {
-    color: '#666',
+  amountCard: {
+    backgroundColor: '#f2f2f2',
+    paddingVertical: 20,
+    paddingHorizontal: 35,
+    borderRadius: 20,
+    elevation: 6,
+    marginBottom: 40,
   },
 
   amount: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 28,
+    fontWeight: '600',
   },
 
   button: {
     backgroundColor: '#ff8c00',
-    padding: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 80,
     borderRadius: 30,
-    width: '70%',
-    alignItems: 'center',
+    elevation: 6,
   },
 
   buttonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontWeight: '600',
   },
+
+  bottomIndicator: {
+    position: 'absolute',
+    bottom: 8,
+    width: 120,
+    height: 5,
+    backgroundColor: '#000',
+    borderRadius: 10,
+  },
+
 });

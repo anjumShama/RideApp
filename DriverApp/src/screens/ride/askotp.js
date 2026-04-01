@@ -6,13 +6,12 @@ import {
   Image,
   TouchableOpacity,
   StatusBar,
-  SafeAreaView,
-  Platform,
 } from 'react-native';
 
-export default function RideComplete({ navigation }) {
+export default function ArrivalScreen({ navigation }) {
   return (
     <View style={styles.container}>
+
       <StatusBar backgroundColor="#cfcfcf" barStyle="dark-content" />
 
       {/* FULL SHEET */}
@@ -31,17 +30,18 @@ export default function RideComplete({ navigation }) {
         {/* CONTENT */}
         <View style={styles.content}>
 
-          {/* LOCATION ICON */}
+          {/* ICON (UPDATED ONLY THIS PART) */}
           <View style={styles.iconCircle}>
             <Image
               source={require('../../assets/location.png')} 
-              style={styles.locationIcon}
+              style={styles.locationImage}
+              resizeMode="contain"
             />
           </View>
 
           {/* TEXT */}
           <Text style={styles.title}>
-            Arrived At Destination of The Ride
+            Arrived At Customer Location
           </Text>
 
           <Text style={styles.sub}>
@@ -49,11 +49,11 @@ export default function RideComplete({ navigation }) {
           </Text>
 
           {/* BUTTON */}
-          <TouchableOpacity
+          <TouchableOpacity 
             style={styles.button}
-            onPress={() => navigation.navigate('VerifiedOtp')}
+            onPress={() => navigation.navigate('CancelRide')}
           >
-            <Text style={styles.buttonText}>End the Trip</Text>
+            <Text style={styles.buttonText}>Ask for OTP</Text>
           </TouchableOpacity>
 
         </View>
@@ -62,6 +62,7 @@ export default function RideComplete({ navigation }) {
         <View style={styles.bottomIndicator} />
 
       </View>
+
     </View>
   );
 }
@@ -73,13 +74,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#cfcfcf',
   },
 
-  /* ✅ FULL SCREEN COVER FIX */
   sheet: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+
     backgroundColor: '#eeeeee',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
-    paddingTop: Platform.OS === 'android' ? 20 : 15, // 👈 small safe spacing only
+
+    paddingTop: 15,
   },
 
   handle: {
@@ -111,19 +117,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff8c00',
     justifyContent: 'center',
     alignItems: 'center',
-
     elevation: 6,
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-
-    marginBottom: 18,
+    marginBottom: 15,
   },
 
-  locationIcon: {
-    width: 30,
-    height: 30,
-    resizeMode: 'contain',
+  /* NEW STYLE FOR IMAGE */
+  locationImage: {
+    width: 35,
+    height: 35,
   },
 
   title: {
@@ -131,25 +132,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#000',
     marginBottom: 5,
-    textAlign: 'center',
   },
 
   sub: {
     fontSize: 13,
     color: '#9a9a9a',
-    marginBottom: 30,
+    marginBottom: 25,
   },
 
   button: {
     backgroundColor: '#ff8c00',
     paddingVertical: 15,
-    paddingHorizontal: 60,
+    paddingHorizontal: 40,
     borderRadius: 30,
-
     elevation: 6,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
   },
 
   buttonText: {
@@ -160,7 +156,7 @@ const styles = StyleSheet.create({
 
   bottomIndicator: {
     position: 'absolute',
-    bottom: Platform.OS === 'android' ? 12 : 8,
+    bottom: 8,
     alignSelf: 'center',
     width: 120,
     height: 5,

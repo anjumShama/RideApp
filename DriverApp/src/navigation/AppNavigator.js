@@ -29,10 +29,21 @@ import RideRequest from '../screens/ride/RideRequest';
 import RideNavigation from '../screens/ride/RideNavigation';
 import RideOTP from '../screens/ride/RideOTP';
 import RideComplete from '../screens/ride/RideComplete';
-import PaymentQR from '../screens/ride/PaymentQR';
+import VerifiedOtp from '../screens/ride/verifiedotp';
+import FAQ from '../screens/help/FAQ';
+
 
 
 import PolicyScreen from '../screens/ride/PolicyScreen';
+import AskOTPScreen from '../screens/ride/askotp';
+import CancelRide from '../screens/ride/cancelride';
+import PaymentQR from '../screens/ride/PaymentQR';
+import ContactUs from '../screens/help/ContactUs';
+import CustomerLocationScreen from '../screens/ride/customerlocation';
+
+import Active from '../screens/history/Active';
+import Cancelled from '../screens/history/Cancelled';
+import RideHistory from '../screens/history/RideHistory';
 
 const Stack = createNativeStackNavigator();
 
@@ -74,12 +85,22 @@ export default function AppNavigator() {
         
         {/*  NEW POLICY SCREEN */}
         <Stack.Screen name="Policy" component={PolicyScreen} />
-
+        <Stack.Screen name="CustomerLocation" component={CustomerLocationScreen} />
+        <Stack.Screen name="AskOTP" component={AskOTPScreen} />
+        <Stack.Screen name="CancelRide" component={CancelRide} />
         <Stack.Screen name="RideNavigation" component={RideNavigation} />
         <Stack.Screen name="RideOTP" component={RideOTP} />
         <Stack.Screen name="RideComplete" component={RideComplete} />
         <Stack.Screen name="PaymentQR" component={PaymentQR} />
+        <Stack.Screen name="VerifiedOtp" component={VerifiedOtp} />
+        <Stack.Screen name="ContactUs" component={ContactUs} />
+        <Stack.Screen name="FAQ" component={FAQ} />
 
+        {/* RIDE HISTORY */}
+        <Stack.Screen name="RideHistory" component={RideHistory} />
+        <Stack.Screen name="Active" component={Active} />
+        <Stack.Screen name="Cancelled" component={Cancelled} />
+      
       </Stack.Navigator>
     </NavigationContainer>
   );

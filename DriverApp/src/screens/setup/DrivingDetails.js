@@ -4,139 +4,166 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Dimensions,
   Image,
+  StatusBar,
+  SafeAreaView,
+  Platform,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-
-const { width, height } = Dimensions.get('window');
+import Svg, { Path, Rect, Line, Polyline } from 'react-native-svg';
 
 export default function DrivingDetails({ navigation }) {
   return (
-    <View style={styles.root}>
-      <View style={styles.card}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
-        {/* Notch */}
-        <View style={styles.notch} />
+      <View style={styles.topSpacer} />
 
-        {/* TITLE */}
-        <Text style={styles.title}>Driving License</Text>
+      {/* TITLE */}
+      <Text style={styles.title}>Driving License</Text>
 
-        {/* POINTS */}
-        <View style={styles.pointsContainer}>
+      {/* POINTS */}
+      <View style={styles.pointsContainer}>
 
-          <View style={styles.pointRow}>
-            <View style={styles.tick}>
-              <Icon name="check" size={14} color="#fff" />
-            </View>
-            <Text style={styles.pointText}>
-              Photocopies and printouts of document{"\n"}will not be accepts
-            </Text>
+        <View style={styles.pointRow}>
+          <View style={styles.tick}>
+            <Icon name="check" size={14} color="#fff" />
           </View>
-
-          <View style={styles.pointRow}>
-            <View style={styles.tick}>
-              <Icon name="check" size={14} color="#fff" />
-            </View>
-            <Text style={styles.pointText}>
-              The photo and all details must be{"\n"}clearly visible
-            </Text>
-          </View>
-
-          <View style={styles.pointRow}>
-            <View style={styles.tick}>
-              <Icon name="check" size={14} color="#fff" />
-            </View>
-            <Text style={styles.pointText}>
-              Only documents that are less than{"\n"}
-              10 Mb in size and in JPG, JPEG, PNG{"\n"}
-              ot PDF format will be accepted
-            </Text>
-          </View>
-
+          <Text style={styles.pointText}>
+            Photocopies and printouts of document will not be accepted
+          </Text>
         </View>
 
-        {/* ATTACH */}
-        <Text style={styles.attachTitle}>Attach Driving License</Text>
-
-        {/* UPLOAD BOX */}
-        <TouchableOpacity style={styles.uploadBox}>
-          <Icon name="upload-cloud" size={40} color="#9e9e9e" />
-        </TouchableOpacity>
-
-        {/* NOTE */}
-        <Text style={styles.note}>
-          <Text style={{ color: '#ff8c00' }}>Note:</Text> Please upload both sides of Driving License
-        </Text>
-
-        {/* SAMPLE IMAGES (NOW YOU CAN ADD REAL IMAGES) */}
-        <View style={styles.sampleRow}>
-          <Image
-            source={require('../../assets/l1.png')}
-            style={styles.sampleImg}
-          />
-          <Image
-            source={require('../../assets/l2.png')}
-            style={styles.sampleImg}
-          />
+        <View style={styles.pointRow}>
+          <View style={styles.tick}>
+            <Icon name="check" size={14} color="#fff" />
+          </View>
+          <Text style={styles.pointText}>
+            The photo and all details must be clearly visible
+          </Text>
         </View>
 
-        {/* BUTTON */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('GovernmentID')}
-        >
-          <Text style={styles.buttonText}>Done</Text>
-        </TouchableOpacity>
-
-        {/* Bottom Bar */}
-        <View style={styles.bottomBar} />
+        <View style={styles.pointRow}>
+          <View style={styles.tick}>
+            <Icon name="check" size={14} color="#fff" />
+          </View>
+          <Text style={styles.pointText}>
+            Only documents less than 10 MB in JPG, JPEG, PNG or PDF format will be accepted
+          </Text>
+        </View>
 
       </View>
-    </View>
+
+      {/* ATTACH */}
+      <Text style={styles.attachTitle}>Attach Driving License</Text>
+
+      {/* 🔥 EXACT ICON BOX */}
+      <TouchableOpacity style={styles.uploadBox}>
+        <Svg width={70} height={70} viewBox="0 0 100 100">
+
+          {/* CLOUD */}
+          <Path
+            d="M30 60 H70 
+               A15 15 0 0 0 70 30 
+               A20 20 0 0 0 30 35 
+               A12 12 0 0 0 30 60 Z"
+            stroke="#7a7a7a"
+            strokeWidth="3"
+            fill="none"
+          />
+
+          {/* BOX */}
+          <Rect
+            x="35"
+            y="55"
+            width="30"
+            height="25"
+            rx="6"
+            stroke="#7a7a7a"
+            strokeWidth="3"
+            fill="none"
+          />
+
+          {/* ARROW */}
+          <Line
+            x1="50"
+            y1="70"
+            x2="50"
+            y2="55"
+            stroke="#7a7a7a"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+
+          <Polyline
+            points="43,62 50,55 57,62"
+            stroke="#7a7a7a"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+
+        </Svg>
+      </TouchableOpacity>
+
+      {/* NOTE */}
+      <Text style={styles.note}>
+        <Text style={styles.noteHighlight}>Note:</Text> Please upload both sides of Driving License
+      </Text>
+
+      {/* SAMPLE IMAGES */}
+      <View style={styles.sampleRow}>
+        <Image
+          source={require('../../assets/l1.png')}
+          style={styles.sampleImg}
+        />
+        <Image
+          source={require('../../assets/l2.png')}
+          style={styles.sampleImg}
+        />
+      </View>
+
+      {/* BUTTON */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('GovernmentID')}
+      >
+        <Text style={styles.buttonText}>Done</Text>
+      </TouchableOpacity>
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
 
-  root: {
+  container: {
     flex: 1,
-    backgroundColor: '#dcdcdc',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 20,
   },
 
-  card: {
-    width: width * 0.9,
-    height: height * 0.92,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 40,
-    alignItems: 'center',
-    paddingTop: 20,
-  },
-
-  notch: {
-    width: 70,
-    height: 10,
-    backgroundColor: '#000',
-    borderRadius: 10,
-    marginBottom: 20,
+  topSpacer: {
+    height: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 
   title: {
     fontSize: 22,
-    fontWeight: '600',
-    marginBottom: 20,
+    fontWeight: '700',
+    marginTop: 20,
+    textAlign: 'center',
+    color: '#000',
   },
 
   pointsContainer: {
-    width: '85%',
+    marginTop: 30,
   },
 
   pointRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 18,
+    marginBottom: 20,
   },
 
   tick: {
@@ -148,12 +175,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 10,
     marginTop: 3,
+    elevation: 3,
   },
 
   pointText: {
     flex: 1,
     fontSize: 13,
-    color: '#333',
+    color: '#444',
     lineHeight: 18,
   },
 
@@ -161,35 +189,43 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 15,
     fontWeight: '600',
-    alignSelf: 'flex-start',
-    marginLeft: 30,
+    color: '#000',
   },
 
+  /* 🔥 MATCHED BOX */
   uploadBox: {
-    width: 120,
-    height: 100,
-    backgroundColor: '#eee',
-    borderRadius: 20,
+    width: 140,
+    height: 120,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
+    alignSelf: 'center',
 
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
     elevation: 6,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
   },
 
   note: {
-    marginTop: 12,
+    marginTop: 15,
     fontSize: 12,
     color: '#333',
+    textAlign: 'center',
+    paddingHorizontal: 20,
+  },
+
+  noteHighlight: {
+    color: '#ff8c00',
+    fontWeight: '600',
   },
 
   sampleRow: {
     flexDirection: 'row',
-    marginTop: 10,
+    justifyContent: 'center',
+    marginTop: 15,
   },
 
   sampleImg: {
@@ -200,29 +236,22 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    width: '75%',
-    height: 50,
+    position: 'absolute',
+    bottom: 40,
+    width: '85%',
+    height: 55,
     backgroundColor: '#ff8c00',
-    borderRadius: 25,
+    borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    bottom: 25,
+    alignSelf: 'center',
+    elevation: 8,
   },
 
   buttonText: {
     color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
-  },
-
-  bottomBar: {
-    width: 120,
-    height: 5,
-    backgroundColor: '#000',
-    borderRadius: 10,
-    position: 'absolute',
-    bottom: 10,
+    fontSize: 17,
+    fontWeight: '700',
   },
 
 });

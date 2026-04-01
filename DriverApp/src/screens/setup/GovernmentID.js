@@ -6,6 +6,7 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function GovernmentID({ navigation }) {
   return (
@@ -54,11 +55,10 @@ export default function GovernmentID({ navigation }) {
         {/* PROFILE */}
         <Text style={styles.profileText}>Profile Picture</Text>
 
-        {/* UPLOAD */}
+        {/* UPLOAD (FIXED HERE) */}
         <View style={styles.uploadContainer}>
           <TouchableOpacity style={styles.uploadBox}>
-            <Text style={styles.uploadIcon}>☁</Text>
-            <Text style={styles.uploadArrow}>↑</Text>
+            <Icon name="cloud-upload-outline" size={55} color="#7a7a7a" />
           </TouchableOpacity>
         </View>
 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 
   sheet: {
     position: 'absolute',
-    top: 0,              // 🔥 THIS FIXES YOUR ISSUE
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,
@@ -168,18 +168,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#e6e6e6',
     justifyContent: 'center',
     alignItems: 'center',
+
     elevation: 8,
-  },
-
-  uploadIcon: {
-    fontSize: 32,
-    color: '#7a7a7a',
-  },
-
-  uploadArrow: {
-    fontSize: 22,
-    color: '#7a7a7a',
-    marginTop: -5,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
   },
 
   button: {
