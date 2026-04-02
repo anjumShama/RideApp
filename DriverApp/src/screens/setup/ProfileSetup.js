@@ -7,7 +7,6 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function ProfileScreen({ navigation }) {
   return (
@@ -49,14 +48,8 @@ export default function ProfileScreen({ navigation }) {
 }
 
 /* MENU ITEM */
-const menuItem = (icon, title, onPress) => (
+const menuItem = (_icon, title, onPress) => (
   <TouchableOpacity style={styles.menuItem} key={title} onPress={onPress}>
-    
-    {/* ICON FIX */}
-    <View style={styles.iconCircle}>
-      <Icon name={icon} size={18} color="#ff8c00" />
-    </View>
-
     <Text style={styles.menuText}>{title}</Text>
   </TouchableOpacity>
 );
@@ -120,17 +113,8 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 
-  iconCircle: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: '#fff4e6',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   menuText: {
-    marginLeft: 15,
+    marginLeft: 0,
     fontSize: 14,
     color: '#333',
     fontWeight: '500',

@@ -11,7 +11,6 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function YourProfile({navigation}) {
   const [name, setName] = useState('Sheikh Khurram');
@@ -31,7 +30,7 @@ export default function YourProfile({navigation}) {
         <TouchableOpacity
           style={styles.backBtn}
           onPress={() => navigation.goBack()}>
-          <Icon name="arrow-left" size={22} color="#000" />
+          <Text style={styles.backText}>Back</Text>
         </TouchableOpacity>
 
         <Text style={styles.title}>Your Profile</Text>
@@ -45,14 +44,13 @@ export default function YourProfile({navigation}) {
             style={styles.profileImg}
           />
           <TouchableOpacity style={styles.cameraBtn}>
-            <Icon name="camera" size={16} color="#fff" />
+            <Text style={styles.cameraText}>Edit</Text>
           </TouchableOpacity>
         </View>
 
         {/* RATING */}
         <View style={styles.ratingContainer}>
           <View style={styles.ratingBox}>
-            <Icon name="star" size={18} color="#ff8c00" />
             <Text style={styles.ratingText}>{rating}</Text>
           </View>
           <Text style={styles.ratingSubText}>{totalRides} rides</Text>
@@ -63,7 +61,6 @@ export default function YourProfile({navigation}) {
           {/* NAME */}
           <Text style={styles.label}>Full Name</Text>
           <View style={styles.inputBox}>
-            <Icon name="account-outline" size={20} color="#ff8c00" />
             <TextInput
               style={styles.input}
               value={name}
@@ -76,7 +73,6 @@ export default function YourProfile({navigation}) {
           {/* EMAIL */}
           <Text style={styles.label}>Email Address</Text>
           <View style={styles.inputBox}>
-            <Icon name="email-outline" size={20} color="#ff8c00" />
             <TextInput
               style={styles.input}
               value={email}
@@ -90,7 +86,6 @@ export default function YourProfile({navigation}) {
           {/* PHONE */}
           <Text style={styles.label}>Phone Number</Text>
           <View style={styles.inputBox}>
-            <Icon name="phone-outline" size={20} color="#ff8c00" />
             <TextInput
               style={styles.input}
               value={phone}
@@ -135,7 +130,7 @@ const styles = StyleSheet.create({
   backBtn: {
     position: 'absolute',
     left: 0,
-    width: 38,
+    width: 60,
     height: 38,
     borderRadius: 14,
     backgroundColor: '#fff',
@@ -145,6 +140,18 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.12,
     shadowRadius: 8,
+  },
+
+  backText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#000',
+  },
+
+  cameraText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#fff',
   },
 
   title: {
